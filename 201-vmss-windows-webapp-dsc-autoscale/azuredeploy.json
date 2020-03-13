@@ -72,13 +72,20 @@
         "description": "Location of the PowerShell DSC zip file relative to the URI specified in the _artifactsLocation, i.e. /DSC/IISInstall.ps1.zip"
       }
     },
-    "webDeployPackage": {
+    "webDeploySitePackage": {
       "type": "string",
       "defaultValue": "/WebDeploy/DefaultASPWebApp.v1.0.zip",
       "metadata": {
         "description": "Location of the  of the WebDeploy package zip file relative to the URI specified in _artifactsLocation, i.e. /WebDeploy/DefaultASPWebApp.v1.0.zip"
       }
     },
+      "webDeployAPIPackage": {
+      "type": "string",
+      "defaultValue": "/WebDeploy/DefaultASPWebApp.v1.0.zip",
+      "metadata": {
+        "description": "Location of the  of the WebDeploy package zip file relative to the URI specified in _artifactsLocation, i.e. /WebDeploy/DefaultASPWebApp.v1.0.zip"
+      }
+    }
     "powershelldscUpdateTagVersion": {
       "type": "string",
       "defaultValue": "1.0",
@@ -122,7 +129,8 @@
       "version": "latest"
     },
     "imageReference": "[variables('osType')]",
-    "webDeployPackageFullPath": "[concat(parameters('_artifactsLocation'), parameters('webDeployPackage'))]",
+    "WebDeploySitePackagePath": "[concat(parameters('_artifactsLocation'), parameters('webDeploySitePackage'))]",
+    "WebDeployAPIPackagePath": "[concat(parameters('_artifactsLocation'), parameters('webDeployAPIPackage'))]",
     "powershelldscZipFullPath": "[concat(parameters('_artifactsLocation'), parameters('powershelldscZip'))]",
     "powershelldscArchiveFolder": "DSC",
     "powershelldscArchiveFileName": "IISInstall.ps1.zip"
@@ -313,7 +321,8 @@
                     },
                     "configurationArguments": {
                       "nodeName": "localhost",
-                      "WebDeployPackagePath": "[variables('webDeployPackageFullPath')]"
+                      "WebDeploySitePackagePath": "[variables('WebDeploySitePackagePath')]",
+                      "WebDeployAPIPackagePath": "[variables('WebDeployAPIPackagePath')]"
                     }
                   }
                 }
